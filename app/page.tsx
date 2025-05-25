@@ -1,10 +1,9 @@
 "use client";
 import StoriesList from "@/components/StoriesList";
 import { stories } from "@/data/stories";
-import Modal from "react-modal";
-import { useEffect, useState } from "react";
-import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import Modal from "react-modal";
 
 export default function Home() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
