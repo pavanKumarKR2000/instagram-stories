@@ -14,7 +14,9 @@ export default function Home() {
 
     if (modalIsOpen) {
       id = setInterval(() => {
-        if (currentStoryId === stories.length - 1) {
+        if (currentStoryId === stories.length) {
+          setModalIsOpen(false);
+          clearInterval(id);
           return;
         }
 
@@ -48,29 +50,34 @@ export default function Home() {
         onSetCurrentStoryId={onSetCurrentStoryId}
       />
       <Modal
+        ariaHideApp={false}
+        id="story_modal"
         isOpen={modalIsOpen}
         className="flex items-center justify-between h-[50vh] w-[400px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 "
         onRequestClose={closeModal}
       >
-        <button
-          className="absolute left-0  top-1/2  -translate-y-1/2 p-4 bg-white"
-          onClick={() => setCurrentStoryId(currentStoryId - 1)}
-          disabled={currentStoryId === 1}
-        >
-          <ChevronLeft className="h-10 w-10" />
-        </button>
+        {currentStoryId !== 1 && (
+          <button
+            className="absolute left-0  top-1/2  -translate-y-1/2 p-4 bg-white"
+            onClick={() => setCurrentStoryId(currentStoryId - 1)}
+          >
+            <ChevronLeft className="h-10 w-10" />
+          </button>
+        )}
         <img
           src={stories[currentStoryId - 1].img}
           className=" object-cover"
           alt="story"
         />
-        <button
-          className="absolute right-0 top-1/2  -translate-y-1/2 p-4 bg-white"
-          onClick={() => setCurrentStoryId(currentStoryId + 1)}
-          disabled={currentStoryId === stories.length}
-        >
-          <ChevronRight className="h-10 w-10" />
-        </button>
+        {currentStoryId !== stories.length && (
+          <button
+            className="absolute right-0 top-1/2  -translate-y-1/2 p-4 bg-white"
+            onClick={() => setCurrentStoryId(currentStoryId + 1)}
+            disabled={currentStoryId === stories.length}
+          >
+            <ChevronRight className="h-10 w-10" />
+          </button>
+        )}
       </Modal>
     </main>
   );
