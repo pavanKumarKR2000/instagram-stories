@@ -4,6 +4,8 @@ import { stories } from "@/data/stories";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { STORY_DURATION } from "./constants";
+import ProgressBar from "@/components/Progressbar";
 
 export default function Home() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -21,7 +23,7 @@ export default function Home() {
         }
 
         setCurrentStoryId(currentStoryId + 1);
-      }, 5000);
+      }, STORY_DURATION);
     }
 
     return () => {
@@ -53,31 +55,34 @@ export default function Home() {
         ariaHideApp={false}
         id="story_modal"
         isOpen={modalIsOpen}
-        className="flex items-center justify-between h-[50vh] w-[400px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 "
+        className=" h-[50vh] md:h-[600px] w-[400px] md:w-[600px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border-none outline-none"
         onRequestClose={closeModal}
       >
-        {currentStoryId !== 1 && (
-          <button
-            className="absolute left-0  top-1/2  -translate-y-1/2 p-4 bg-white"
-            onClick={() => setCurrentStoryId(currentStoryId - 1)}
-          >
-            <ChevronLeft className="h-10 w-10" />
-          </button>
-        )}
-        <img
-          src={stories[currentStoryId - 1].img}
-          className=" object-cover"
-          alt="story"
-        />
-        {currentStoryId !== stories.length && (
-          <button
-            className="absolute right-0 top-1/2  -translate-y-1/2 p-4 bg-white"
-            onClick={() => setCurrentStoryId(currentStoryId + 1)}
-            disabled={currentStoryId === stories.length}
-          >
-            <ChevronRight className="h-10 w-10" />
-          </button>
-        )}
+        <ProgressBar currentStoryId={currentStoryId} />
+        <div className="relative flex items-center w-full">
+          {currentStoryId !== 1 && (
+            <button
+              className="absolute left-0  top-1/2  -translate-y-1/2 p-4 bg-white"
+              onClick={() => setCurrentStoryId(currentStoryId - 1)}
+            >
+              <ChevronLeft className="h-10 w-10" />
+            </button>
+          )}
+          <img
+            src={stories[currentStoryId - 1].img}
+            className="md:h-[600px] md:w-[600px] object-cover"
+            alt="story"
+          />
+          {currentStoryId !== stories.length && (
+            <button
+              className="absolute right-0 top-1/2  -translate-y-1/2 p-4 bg-white"
+              onClick={() => setCurrentStoryId(currentStoryId + 1)}
+              disabled={currentStoryId === stories.length}
+            >
+              <ChevronRight className="h-10 w-10" />
+            </button>
+          )}
+        </div>
       </Modal>
     </main>
   );
