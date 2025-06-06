@@ -62,7 +62,7 @@ export default function Home() {
         <div className="relative flex items-center w-full">
           {currentStoryId !== 1 && (
             <button
-              className="absolute left-0  top-1/2  -translate-y-1/2 p-4 bg-white"
+              className="absolute left-0  top-1/2  -translate-y-1/2 p-4 bg-white  cursor-pointer"
               onClick={() => setCurrentStoryId(currentStoryId - 1)}
             >
               <ChevronLeft className="h-10 w-10" />
@@ -75,7 +75,7 @@ export default function Home() {
           />
           {currentStoryId !== stories.length && (
             <button
-              className="absolute right-0 top-1/2  -translate-y-1/2 p-4 bg-white"
+              className="absolute right-0 top-1/2  -translate-y-1/2 p-4 bg-white cursor-pointer"
               onClick={() => setCurrentStoryId(currentStoryId + 1)}
               disabled={currentStoryId === stories.length}
             >
