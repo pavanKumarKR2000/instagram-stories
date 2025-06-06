@@ -12,15 +12,15 @@ export default function StoriesList({
   onSetCurrentStoryId,
 }: StoriesListProps) {
   return (
-    <div className="w-screen overflow-x-auto">
-      <ul className=" flex items-center gap-4 ">
+    <div className="w-screen overflow-x-auto ">
+      <ul className=" flex items-center justify-center gap-4 ">
         {stories.map((story) => (
           <li
             key={story.id}
             className="bg-gradient-to-r
           from-blue-500
           via-purple-500
-          to-pink-500 p-1 rounded-full aspect-square h-[200px] w-[200px]"
+          to-pink-500 p-1 rounded-full aspect-square h-[200px] w-[200px] cursor-pointer"
             onClick={() => {
               onSetCurrentStoryId(story.id);
               openModal();
