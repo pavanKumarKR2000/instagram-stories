@@ -3,7 +3,7 @@ import { stories } from "@/data/stories";
 import { Suspense } from "react";
 
 async function fetchStories(): Promise<{ id: number; img: string }[]> {
-  return new Promise((res, _) => {
+  return new Promise((res) => {
     setTimeout(() => {
       res(stories);
     }, 3000);
